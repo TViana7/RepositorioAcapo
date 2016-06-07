@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1713" minimumToolsVersion="Automatic">
+    <entity name="CaminhosPe" representedClassName=".CaminhosPe" syncable="YES">
+        <attribute name="cor_caminho" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="data_caminho" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descricao_caminho" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="encode_caminho" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_caminho" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="nome_caminho" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tipo_caminho" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Passadeiras" representedClassName=".Passadeiras" syncable="YES">
+        <attribute name="data_passadeira" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descricao_passadeira" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="encode_passadeira" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_passadeira" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="nome_passadeira" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CaminhosPe" positionX="-243" positionY="-90" width="128" height="148"/>
+        <element name="Passadeiras" positionX="-243" positionY="-36" width="128" height="120"/>
+    </elements>
+</model>
