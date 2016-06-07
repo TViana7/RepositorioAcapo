@@ -13,7 +13,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var table: UITableView!
     
-    //O Viana nao percebe um crlho de GitHub
     
     
     var array=[CaminhosPe]()
