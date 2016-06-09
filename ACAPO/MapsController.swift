@@ -27,7 +27,7 @@ class MapsController:UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        //
                 
         //localização atual
         locationManager = CLLocationManager()
