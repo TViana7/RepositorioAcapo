@@ -46,7 +46,7 @@ class MapsController:UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         //atualiza a localização atual no mapa
         map.delegate = self
-        map.showsUserLocation = true
+        map.showsUserLocation = false
         map.mapType = MKMapType(rawValue: 0)!
         map.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
         
