@@ -9,10 +9,14 @@
 import UIKit
 import CoreData
 import MapKit
+import CoreLocation
 
 
-class MapsController:UIViewController, MKMapViewDelegate
+class MapsController:UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
 {
+    
+    var locationManager:CLLocationManager!
+    var currentLocation = CLLocation()
     var lat:Int=0
     var lng:Int=0
     var caminho:CaminhosPe?
@@ -24,11 +28,37 @@ class MapsController:UIViewController, MKMapViewDelegate
     {
         super.viewDidLoad()
         
+                
+        //localização atual
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.delegate = self;
+        
+        let status = CLLocationManager.authorizationStatus()
+        if status == .NotDetermined || status == .Denied || status == .AuthorizedWhenInUse {
+            
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
+        
+        //atualiza a localização atual no mapa
+        map.delegate = self
+        map.showsUserLocation = true
+        map.mapType = MKMapType(rawValue: 0)!
+        map.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+        
+        
+        
+        
         print("$$ Maps")
         print("Caminho \((caminho?.nome_caminho)!) - Encode: \((caminho?.encode_caminho)!)")
         
         initCaminho()
         
+        //getLocation()
     }
     
     override func didReceiveMemoryWarning()
@@ -36,6 +66,46 @@ class MapsController:UIViewController, MKMapViewDelegate
         super.didReceiveMemoryWarning()
     }
     
+    
+    //adiciona ao mapa o percurso
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation){
+        
+        print("present location : \(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)")
+        
+        
+        
+        /*if  let oldLocationNew = oldLocation as CLLocation?{
+            let oldCoordinates = oldLocationNew.coordinate
+            let newCoordinates = newLocation.coordinate
+            var area = [oldCoordinates, newCoordinates]
+            let polyline = MKPolyline(coordinates: &area, count: area.count)
+            map.addOverlay(polyline)
+        }*/
+        
+    }
+    
+    /*func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let identifier = "User"
+        
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+        
+        if annotationView == nil{
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+            
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        annotationView!.image = UIImage(named: "icon")
+        
+        return annotationView
+        
+    }*/
+    
+    
+    // desenha o percurso
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer!
     {
         if overlay is MKPolyline
@@ -155,3 +225,4 @@ class MapsController:UIViewController, MKMapViewDelegate
         )
     }
 }
+
